@@ -1,3 +1,4 @@
+CONSOLE_ENABLE = yes
 # MCU
 MCU = cortex-m0plus
 ARMV = 6

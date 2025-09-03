@@ -36,19 +36,23 @@ void led_command_callback(const message_t *msg) {
             ap2_led_status.errors             = msg->payload[5];
             break;
 
-#ifdef CONSOLE_ENABLE
         case CMD_LED_DEBUG:
-            /* TODO: Don't use printf. */
-            printf("LED:");
-            for (int i = 0; i < msg->payload_size; i++) {
-                printf("%02x ", msg->payload[i]);
-            }
-            for (int i = 0; i < msg->payload_size; i++) {
-                printf("%c", msg->payload[i]);
-            }
-            printf("\n");
+            uprintf("[SHINE] %.*s\n", msg->payload_size, msg->payload)
             break;
-#endif
+
+// #ifdef CONSOLE_ENABLE
+//         case CMD_LED_DEBUG:
+//             /* TODO: Don't use printf. */
+//             printf("LED:");
+//             for (int i = 0; i < msg->payload_size; i++) {
+//                 printf("%02x ", msg->payload[i]);
+//             }
+//             for (int i = 0; i < msg->payload_size; i++) {
+//                 printf("%c", msg->payload[i]);
+//             }
+//             printf("\n");
+//             break;
+// #endif
     }
 }
 

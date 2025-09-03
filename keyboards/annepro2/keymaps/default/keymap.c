@@ -14,6 +14,7 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+#include "quantum.h"
 #include QMK_KEYBOARD_H
 
 enum anne_pro_layers {
@@ -104,3 +105,10 @@ enum anne_pro_layers {
  ),
 };
 // clang-format on
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        uprintf("Key pressed: %u\n", keycode);
+    }
+    return true;
+}

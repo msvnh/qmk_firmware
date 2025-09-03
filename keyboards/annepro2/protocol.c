@@ -16,6 +16,7 @@
 #include "board.h"
 #include "ch.h"
 #include "hal.h"
+#include "print.h"
 
 /* UART communication protocol state */
 protocol_t proto;
@@ -34,6 +35,13 @@ void           proto_tx(uint8_t cmd, const unsigned char *buf, int payload_size,
     const uint8_t header[5] = {
         0x7A, 0x1D, cmd, ++msg_id, payload_size,
     };
+
+    // log proto_tx call to Shine
+    // uprintf("[QMK] 0x%02X, ID: %u, LEN: %d\n", cmd, msg_id, payload_size);
+    // for (int i = 0; i < payload_size; i++) {
+    //         uprintf("%02X ", buf[i]);
+    // }
+    // uprintf("\n");
 
     /* We don't implement ACKs, yet some messages should not be lost. */
     for (int i = 0; i < retries; i++) {
