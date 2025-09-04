@@ -37,7 +37,7 @@ void led_command_callback(const message_t *msg) {
             break;
 
         case CMD_LED_DEBUG:
-            uprintf("[SHINE] %.*s\n", msg->payload_size, msg->payload)
+            uprintf("[SHINE] %.*s\n", msg->payload_size, msg->payload);
             break;
 
 // #ifdef CONSOLE_ENABLE
