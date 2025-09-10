@@ -89,6 +89,8 @@ void ap2_led_unset_sticky_key(uint8_t row, uint8_t col);
 void ap2_led_unset_sticky_row(uint8_t row);
 void ap2_led_unset_sticky_all(void);
 
+void ap2_led_get_debug_logs(void);
+
 typedef struct {
     uint8_t amount_of_profiles;
     uint8_t current_profile;

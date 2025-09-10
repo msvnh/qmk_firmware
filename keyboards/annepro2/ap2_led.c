@@ -36,23 +36,19 @@ void led_command_callback(const message_t *msg) {
             ap2_led_status.errors             = msg->payload[5];
             break;
 
+#ifdef CONSOLE_ENABLE
         case CMD_LED_DEBUG:
-            uprintf("[SHINE] %.*s\n", msg->payload_size, msg->payload);
+            /* TODO: Don't use printf. */
+            printf("LED:");
+            for (int i = 0; i < msg->payload_size; i++) {
+                printf("%02x ", msg->payload[i]);
+            }
+            for (int i = 0; i < msg->payload_size; i++) {
+                printf("%c", msg->payload[i]);
+            }
+            printf("\n");
             break;
-
-// #ifdef CONSOLE_ENABLE
-//         case CMD_LED_DEBUG:
-//             /* TODO: Don't use printf. */
-//             printf("LED:");
-//             for (int i = 0; i < msg->payload_size; i++) {
-//                 printf("%02x ", msg->payload[i]);
-//             }
-//             for (int i = 0; i < msg->payload_size; i++) {
-//                 printf("%c", msg->payload[i]);
-//             }
-//             printf("\n");
-//             break;
-// #endif
+#endif
     }
 }
 
@@ -179,3 +175,5 @@ void ap2_led_forward_keypress(uint8_t row, uint8_t col) {
     const uint8_t payload = row << 4 | col;
     proto_tx(CMD_LED_KEY_DOWN, &payload, 1, 1);
 }
+
+void ap2_led_get_debug_logs(void) { proto_tx(CMD_LED_GET_DEBUG, NULL, 0, 1); }

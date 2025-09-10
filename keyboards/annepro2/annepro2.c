@@ -284,6 +284,10 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 return true;
             #endif
 
+            case KC_AP_RGB_DEBUG:
+                ap2_led_get_debug_logs();
+                return true;
+
             default:
                 break;
         }
